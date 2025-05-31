@@ -1,5 +1,8 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Theme toggle functionality
+    initializeThemeToggle();
+    
     // Smooth scroll for navigation links
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
@@ -404,4 +407,48 @@ function initializeBreslandFeatures() {
             });
         });
     });
+}
+
+// Theme toggle functionality
+function initializeThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeIcon = themeToggle.querySelector('.theme-icon');
+    const html = document.documentElement;
+    
+    // Check for saved theme preference or default to dark mode
+    const savedTheme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme) {
+        html.classList.toggle('light-mode', savedTheme === 'light');
+    } else if (!prefersDark) {
+        html.classList.add('light-mode');
+    }
+    
+    // Update icon based on current theme
+    updateThemeIcon(themeIcon, html.classList.contains('light-mode'));
+    
+    // Theme toggle click handler
+    themeToggle.addEventListener('click', function() {
+        const isLightMode = html.classList.contains('light-mode');
+        
+        // Toggle theme
+        html.classList.toggle('light-mode');
+        
+        // Update icon
+        updateThemeIcon(themeIcon, !isLightMode);
+        
+        // Save preference
+        localStorage.setItem('theme', isLightMode ? 'dark' : 'light');
+        
+        // Add a little animation feedback
+        themeToggle.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            themeToggle.style.transform = '';
+        }, 150);
+    });
+}
+
+function updateThemeIcon(iconElement, isLightMode) {
+    iconElement.textContent = isLightMode ? '☀️' : '🌙';
 }

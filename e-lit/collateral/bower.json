@@ -1,0 +1,19 @@
+{
+  "name": "local",
+  "version": "0.0.0",
+  "authors": [
+    "kardeiz <kardeiz@gmail.com>"
+  ],
+  "license": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~1.11.3",
+    "papaparse": "~4.1.2"
+  }
+}

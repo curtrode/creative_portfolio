@@ -1,0 +1,121 @@
+/*
+Stylesheet for Divine Mind Fragment Theatre by Jim Andrews.
+Christmas 2014, Burnaby BC Canada.
+*/
+
+body {
+	color:#000000;
+	font-size: 100%;
+	background-color:white;
+}
+
+#container {
+	/* Contains all content. */
+	position: absolute; 
+	top: 0; 
+	left: 0; 
+	width: 100%; 
+	height: 100%;
+	background-color:white;
+}
+#title {
+	font-family: Arial,Helvetica,sans-serif;
+	font-size:130%;
+	font-weight:bold;
+	margin-left:10px;
+	margin-top:10px;
+}
+#maintext {
+	/* Contains the poem text. */
+	position: relative;
+	top: 4%;
+	margin: auto;
+	width: 450px;
+	max-width: 90%;
+	padding: 10px;
+	font-size: 13pt;
+	font-family:Gotham, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+#directions {
+	margin-left: 5%;
+	font-family: Gotham, Helvetica Neue, Helvetica, Arial, sans-serif;
+}
+
+@media (max-width: 450px) {
+	/* For mobile phones. */
+  .passage0, .passage1, .passage2 {
+    font-size:70%;
+  }
+}
+
+/* This particular stir fry has 3 texts. A style for each text
+so we can tell the texts apart when stirred together. */
+.passage0 {
+	color:#000000;
+}
+.passage1 {
+	font-weight: italic;
+	}
+.passage2 {
+	font-style: italic;	
+	font-color: blue;
+}
+
+#titleImg {
+	/* The title image. */
+	padding:10px;
+}
+
+
+#links {
+	/* The div that contains the bottom left links to the Stir Fry
+	home page and to vispo.com */
+	position:fixed;
+	right:5px;
+	bottom:5px;
+	text-align:center;
+}
+
+a.stir:link, a.stir:visited {
+	/* Link to Stir Fry home page. */
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 0.8em;
+	color: gray;
+	text-decoration: none;
+	margin:0 auto;
+}
+a.stir:hover {  
+	color: #14c878;
+}
+
+
+a.logo:link, a.logo:visited {
+	/* Logo link to vispo.com */
+	font-family: "Times New Roman";
+	font-weight: normal;
+	text-decoration:none;
+}
+a.logo:hover {
+	font-weight:bold;
+}
+#v {
+	font-size:1em;
+	color:#FF0000;
+}
+#i {
+	font-size:0.8em;
+	color:#FFFF00;
+}
+#s {
+	font-size:0.6em;
+	color:#00FF00;
+}
+#p {
+	font-size:0.8em;
+	color:#83AEF5;
+}
+#o {
+	font-size:1em;
+	color:#FF80FF;
+}

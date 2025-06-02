@@ -409,46 +409,15 @@ function initializeBreslandFeatures() {
     });
 }
 
-// Theme toggle functionality
+// Remove theme toggle functionality - dark mode only
 function initializeThemeToggle() {
+    // Dark mode is now the only mode - no toggle needed
+    // Remove any light mode classes if they exist
+    document.documentElement.classList.remove('light-mode');
+    
+    // Hide the theme toggle button
     const themeToggle = document.getElementById('theme-toggle');
-    const themeIcon = themeToggle.querySelector('.theme-icon');
-    const html = document.documentElement;
-    
-    // Check for saved theme preference or default to dark mode
-    const savedTheme = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    if (savedTheme) {
-        html.classList.toggle('light-mode', savedTheme === 'light');
-    } else if (!prefersDark) {
-        html.classList.add('light-mode');
+    if (themeToggle) {
+        themeToggle.style.display = 'none';
     }
-    
-    // Update icon based on current theme
-    updateThemeIcon(themeIcon, html.classList.contains('light-mode'));
-    
-    // Theme toggle click handler
-    themeToggle.addEventListener('click', function() {
-        const isLightMode = html.classList.contains('light-mode');
-        
-        // Toggle theme
-        html.classList.toggle('light-mode');
-        
-        // Update icon
-        updateThemeIcon(themeIcon, !isLightMode);
-        
-        // Save preference
-        localStorage.setItem('theme', isLightMode ? 'dark' : 'light');
-        
-        // Add a little animation feedback
-        themeToggle.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            themeToggle.style.transform = '';
-        }, 150);
-    });
-}
-
-function updateThemeIcon(iconElement, isLightMode) {
-    iconElement.textContent = isLightMode ? '☀️' : '🌙';
 }

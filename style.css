@@ -53,65 +53,6 @@
     --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
 }
 
-/* Light Mode Variables */
-:root.light-mode {
-    /* Neutral Colors - Light Mode */
-    --bg-primary: #ffffff;
-    --bg-secondary: #f8fafc;
-    --bg-tertiary: #e2e8f0;
-    --surface: #f1f5f9;
-    --surface-alt: #e2e8f0;
-    
-    /* Text Colors - Light Mode */
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --text-muted: #64748b;
-    
-    /* Accent Colors - Light Mode */
-    --border: rgba(0, 0, 0, 0.1);
-    --border-hover: rgba(0, 0, 0, 0.2);
-    
-    /* Adjust shadow colors for light mode */
-    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.2);
-}
-
-/* Theme Toggle Button */
-.theme-toggle {
-    background: none;
-    border: 2px solid var(--border);
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    color: var(--text-primary);
-    font-size: 1.2rem;
-}
-
-.theme-toggle:hover {
-    border-color: var(--primary);
-    background: rgba(99, 102, 241, 0.1);
-    transform: scale(1.1);
-}
-
-.theme-toggle:active {
-    transform: scale(0.95);
-}
-
-.theme-icon {
-    transition: transform 0.3s ease;
-}
-
-.theme-toggle:hover .theme-icon {
-    transform: rotate(15deg);
-}
-
 body {
     font-family: var(--font-primary);
     background: var(--bg-primary);
@@ -137,11 +78,6 @@ body {
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
     z-index: 100;
-}
-
-/* Light mode navigation background */
-:root.light-mode .navbar {
-    background: rgba(255, 255, 255, 0.95);
 }
 
 .nav-container {
@@ -188,12 +124,6 @@ body {
     letter-spacing: 0.05em;
     transition: color 0.3s ease;
     position: relative;
-}
-
-/* Improve nav link contrast in light mode */
-:root.light-mode .nav-link {
-    color: var(--text-primary);
-    font-weight: 600;
 }
 
 .nav-link:hover {

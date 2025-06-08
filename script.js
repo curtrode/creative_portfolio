@@ -104,6 +104,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Bresland-style interactions
     initializeBreslandFeatures();
+
+    // Mobile-specific enhancements for Deep Sleepers card
+    initializeMobileOptimizations();
 });
 
 // Background particles system
@@ -420,4 +423,93 @@ function initializeThemeToggle() {
     if (themeToggle) {
         themeToggle.style.display = 'none';
     }
+}
+
+// Mobile-specific enhancements for Deep Sleepers card
+function initializeMobileOptimizations() {
+    // Touch feedback for streaming links on mobile
+    const streamingLinks = document.querySelectorAll('.streaming-link');
+    
+    streamingLinks.forEach(link => {
+        // Add touch feedback
+        link.addEventListener('touchstart', function(e) {
+            this.style.transform = 'scale(0.98)';
+            this.style.transition = 'transform 0.1s ease';
+        });
+        
+        link.addEventListener('touchend', function(e) {
+            setTimeout(() => {
+                this.style.transform = '';
+                this.style.transition = 'all 0.2s ease';
+            }, 100);
+        });
+        
+        // Prevent double-tap zoom on streaming links
+        link.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            // Use a small delay to distinguish from scroll
+            setTimeout(() => {
+                window.open(this.href, '_blank');
+            }, 50);
+        });
+    });
+    
+    // Optimize image loading for mobile
+    const projectImages = document.querySelectorAll('.project-image');
+    projectImages.forEach(img => {
+        // Add loading optimization
+        img.setAttribute('loading', 'lazy');
+        
+        // Add error handling for missing images
+        img.addEventListener('error', function() {
+            this.style.background = 'var(--surface)';
+            this.style.minHeight = '200px';
+            this.style.display = 'flex';
+            this.style.alignItems = 'center';
+            this.style.justifyContent = 'center';
+            this.innerHTML = '<span style="color: var(--text-muted); font-size: 0.8rem;">Image not available</span>';
+        });
+    });
+    
+    // Mobile-specific viewport height adjustment
+    function setMobileViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+    
+    // Set initial viewport height
+    setMobileViewportHeight();
+    
+    // Update on orientation change
+    window.addEventListener('orientationchange', function() {
+        setTimeout(setMobileViewportHeight, 100);
+    });
+    
+    // Update on resize
+    window.addEventListener('resize', setMobileViewportHeight);
+    
+    // Close mobile navigation when clicking on a link
+    const mobileNavLinks = document.querySelectorAll('.nav-link');
+    const navToggle = document.querySelector('.nav-toggle');
+    const navLinksContainer = document.querySelector('.nav-links');
+    
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                navLinksContainer.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        });
+    });
+    
+    // Close navigation when clicking outside
+    document.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            const isNavClick = e.target.closest('.nav-container');
+            if (!isNavClick && navLinksContainer.classList.contains('active')) {
+                navLinksContainer.classList.remove('active');
+                navToggle.classList.remove('active');
+            }
+        }
+    });
 }

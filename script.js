@@ -1,5 +1,8 @@
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize progress bar
+    initializeProgressBar();
+    
     // Theme toggle functionality
     initializeThemeToggle();
     
@@ -190,6 +193,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Dynamic background particles (optional enhancement)
     createBackgroundParticles();
+
+    // Initialize floating elements
+    initializeFloatingElements();
 
     // Bresland-style interactions
     initializeBreslandFeatures();
@@ -508,10 +514,77 @@ function initializeThemeToggle() {
     document.documentElement.classList.remove('light-mode');
     
     // Hide the theme toggle button
-    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggle = document.querySelector('.theme-toggle');
     if (themeToggle) {
         themeToggle.style.display = 'none';
     }
+}
+
+// Progress Bar Functionality
+function initializeProgressBar() {
+    const progressBar = document.querySelector('.progress-bar');
+    
+    if (!progressBar) return;
+    
+    // Update progress bar on scroll
+    function updateProgressBar() {
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        
+        progressBar.style.width = scrolled + '%';
+        
+        // Add glow effect when scrolling
+        if (scrolled > 0) {
+            progressBar.classList.add('active');
+        } else {
+            progressBar.classList.remove('active');
+        }
+    }
+    
+    // Add scroll event listener with throttling
+    let ticking = false;
+    function requestUpdateProgressBar() {
+        if (!ticking) {
+            requestAnimationFrame(updateProgressBar);
+            ticking = true;
+            setTimeout(() => ticking = false, 16); // ~60fps
+        }
+    }
+    
+    window.addEventListener('scroll', requestUpdateProgressBar);
+    
+    // Initialize progress bar
+    updateProgressBar();
+}
+
+// Enhanced Floating Elements Animation
+function initializeFloatingElements() {
+    const floatingElements = document.querySelectorAll('.floating-element');
+    
+    floatingElements.forEach((element, index) => {
+        // Add mouseover interaction
+        element.addEventListener('mouseenter', function() {
+            this.style.transform = 'scale(1.5) rotate(20deg)';
+            this.style.opacity = '0.8';
+            this.style.zIndex = '10';
+        });
+        
+        element.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+            this.style.opacity = '';
+            this.style.zIndex = '';
+        });
+        
+        // Add random movement
+        setInterval(() => {
+            if (!element.matches(':hover')) {
+                const randomX = (Math.random() - 0.5) * 20;
+                const randomY = (Math.random() - 0.5) * 20;
+                element.style.transform = `translate(${randomX}px, ${randomY}px)`;
+            }
+        }, 3000 + (index * 1000));
+    });
 }
 
 // Mobile-specific enhancements for Deep Sleepers card

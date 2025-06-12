@@ -136,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe all project cards and timeline items
-    const animateElements = document.querySelectorAll('.project-card, .timeline-item, .about-content');
+    const animateElements = document.querySelectorAll('.project-card, .timeline-item');
     animateElements.forEach(el => observer.observe(el));
 
     // Play button functionality for audio tracks
@@ -290,13 +290,13 @@ particleStyle.textContent = `
         animation: animate-in 0.6s ease-out forwards;
     }
     
-    .project-card, .timeline-item, .about-content {
+    .project-card, .timeline-item {
         opacity: 0;
         transform: translateY(30px);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     }
     
-    .project-card.animate-in, .timeline-item.animate-in, .about-content.animate-in {
+    .project-card.animate-in, .timeline-item.animate-in {
         opacity: 1;
         transform: translateY(0);
     }

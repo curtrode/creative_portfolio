@@ -907,7 +907,7 @@ body {
     box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
-/* Poetry Cards - Side by Side Design */
+/* Poetry Cards - Side to Side Design */
 .poetry-grid {
     display: grid;
     gap: var(--spacing-xl);
@@ -1171,9 +1171,15 @@ body {
     animation: animate-in 0.6s ease-out forwards;
 }
 
-.project-card, .timeline-item, .about-content {
+.project-card, .timeline-item {
     opacity: 0;
     transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.about-content {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
@@ -1240,6 +1246,131 @@ body {
         width: 40px;
         height: 40px;
         font-size: 1rem;
+    }
+}
+
+/* Streaming Links Styles */
+.streaming-links {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.streaming-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.streaming-link:hover {
+    border-color: var(--primary);
+    background: var(--surface-alt);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+}
+
+.streaming-link.spotify:hover {
+    border-color: #1db954;
+    background: rgba(29, 185, 84, 0.1);
+}
+
+.streaming-link.apple-music:hover {
+    border-color: #fc3c44;
+    background: rgba(252, 60, 68, 0.1);
+}
+
+.streaming-link.youtube:hover {
+    border-color: #ff0000;
+    background: rgba(255, 0, 0, 0.1);
+}
+
+.streaming-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: var(--radius-sm);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.streaming-link:hover .streaming-icon {
+    transform: scale(1.1);
+}
+
+/* About Section Styles */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2xl);
+    margin-top: var(--spacing-xl);
+}
+
+.about-text {
+    flex: 1;
+    max-width: 600px;
+}
+
+.about-description {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-top: var(--spacing-md);
+}
+
+.about-visual {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 200px;
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    position: relative;
+    overflow: hidden;
+}
+
+.about-visual::before {
+    content: "{ code }";
+    font-family: var(--font-mono);
+    font-size: 2rem;
+    color: var(--text-muted);
+    opacity: 0.3;
+}
+
+/* Responsive adjustments for about section */
+@media (max-width: 768px) {
+    .about-content {
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+    
+    .streaming-links {
+        justify-content: flex-start;
+        gap: var(--spacing-sm);
+    }
+    
+    .streaming-link {
+        font-size: 0.75rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+    
+    .streaming-icon {
+        width: 20px;
+        height: 20px;
     }
 }
 
